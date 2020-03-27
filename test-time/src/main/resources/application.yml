@@ -1,0 +1,41 @@
+server:
+  address: localhost
+  port: 8888
+
+ 
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3310/time_case?&characterEncoding=UTF-8
+    username: root 
+  cloud:    config:      enabled: false
+  thymeleaf:    cache: false
+    prefix: classpath:templates/
+    check-template-location: true
+    suffix: .html
+    mode: HTML5
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+    show-sql: true
+    open-in-view: false
+    hibernate:
+     ddl-auto: update
+    properties: 
+      javax:
+        persistence:
+          validation:
+#            factory: validatorFactory
+#            factory: validator
+            mode: none 
+      hibernate:
+        default_batch_fetch_size: 1000 # N+1쿼리를 방지하기 위해 child collection을 한꺼번에 패치해 옴.  
+        jdbc:
+          time_zone: UTC
+        show_sql: true
+        format_sql: true
+        SQL: trace
+    
